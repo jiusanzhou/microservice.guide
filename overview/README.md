@@ -9,6 +9,11 @@ If you'd like to contribute, please feel free to [reach out](https://microservic
 ## Microservice Definition
 A `microservice.yml` file **MUST** be provided which outlines the command structure and operations of the container as seen below in the documentation.
 
+The `microservice.yml` must provide a version number in its definition.
+
+```yaml
+version: 1
+```
 ## Keywords
 
 - **MUST** - Required for a service to contain this functionality
