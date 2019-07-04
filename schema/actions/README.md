@@ -188,6 +188,90 @@ actions:
           max: 20
 ```
 
+### Lists
+
+<Badge text="actions.$.arguments.$.lists" type="tip"/> <Badge text="actions.$.events.$.arguments.$.lists" type="tip"/>
+
+The optional argument `list` must have a key `element` with the type of the list.
+
+```yaml{6}
+actions:
+  colorize:
+    arguments:
+      colors:
+        type: list
+        list:
+          element:
+            type: int
+```
+
+This service argument must be a list of integers.
+
+### Maps
+
+<Badge text="actions.$.arguments.$.maps" type="tip"/> <Badge text="actions.$.events.$.arguments.$.maps" type="tip"/>
+
+The argument `map` must have the keys `key` and `value` with the respective types of the map.
+
+```yaml{6}
+actions:
+  colorize:
+    arguments:
+      colorMapping:
+        type: map
+        map:
+          key:
+            type: string
+          value:
+            type: int
+```
+
+This service argument must be a `map` with `string` as keys and integers as value.
+
+### Objects
+
+<Badge text="actions.$.arguments.$.objects" type="tip"/> <Badge text="actions.$.events.$.arguments.$.objects" type="tip"/>
+
+The argument `type` can also be an object.
+
+```yaml{6}
+actions:
+  colorize:
+    arguments:
+      color:
+        type: object
+        properties:
+          red:
+            type: float
+          green:
+            type: float
+          blue:
+            type: float
+```
+
+This service argument must be a `map` with `string` as keys and integers as value.
+
+Objects may be nested:
+
+
+```yaml{6}
+actions:
+  create:
+    arguments:
+      user:
+        type: object
+        properties:
+          name:
+            type: string
+          location:
+            type: object
+            properties:
+              street:
+                type: string
+              postcode:
+                type: string
+```
+
 
 ## Output
 
@@ -209,7 +293,7 @@ An `action` **MUST** define it's `output`.
         "desc": "If the `type` is specified as `object`, this **MUST** indicate the Content-Type of the response"
     },
     "properties": {
-        "desc": "A map of `key: {Output}` (only for `map` or `object` types)"
+        "desc": "A map of `key: {Output}` (only for `object` types)"
     },
     "actions": {
         "desc": "A map of `action: {Action}` that can be performed by this output (only for `object` types)."
